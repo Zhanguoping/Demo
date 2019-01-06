@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>纪念毕业</title>
+	<style>
+		body {
+	margin: 0;
+	padding: 0;
+	background: #CC9999;
+	font-size: 12px;
+	overflow: auto;
+}
+
+#mainDiv{
+	width: 100%;
+	height: 100%;
+}
+#biaoti{
+	font-weight:bold;
+	font-family: KaiTi;
+	text-align: center;
+	font-size: 34px;
+	float: left;
+	margin-top: 180px;
+	margin-left: 40px;
+	width: 350px;
+	height: 300px;
+}
+#loveHeart {
+	float: left;
+	width: 670px;
+	height: 625px;
+}
+
+#garden {
+	width: 100%;
+	height: 100%;
+}
+
+#elapseClock {
+	text-align: right;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#elapseClock .digit {
+	font-family: "digit";
+	font-size: 36px;
+}
+
+#loveu {
+	padding: 5px;
+	font-size: 22px;
+	margin-top: 80px;
+	margin-right: 120px;
+	text-align: right;
+	display: none;
+}
+
+#loveu .signature {
+	margin-top: 10px;
+	font-size: 20px;
+	font-style: italic;
+}
+
+#words {
+	font-family: "sans-serif";
+	width: 500px;
+	font-size: 24px;
+	color: #666;
+}
+
+#messages{
+	display: none;
+}
+
+#code {
+	float: left;
+	width: 460px;
+	color: #333;
+	font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
+	font-size: 16px;
+}
+
+#code .string{
+	color: #2a36ff;
+}
+
+#code .comments {
+	color: #3f7f5f;
+	font-style: italic;
+}
+
+#errorMsg {
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+	position: absolute;
+	top: 100px;
+	left: 0px;
+}
+
+#copyright{
+	margin-top: 10px;
+	text-align: center;
+	width:100%;
+	color:#666;
+}
+
+#copyright a{
+	color:#666;
+}
+
+	</style>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+
+</head>
+
+<body>
+	<div id="123"></div>
+	<div id="mainDiv">
+		<div id="biaoti">
+			<span>我</span><br />
+			<span>们</span><br />
+			<span>的</span><br />
+			<span>时</span><br />
+			<span>光</span><br />
+		</div>
+		<div id="content">
+			<div id="code">
+				<span class="comments">因为梦想，我们相聚那里；</span><br />
+				<span class="comments">因为梦想，我们从那里起飞。</span><br />
+				<span class="comments">三年，其实很短；三年，我们已然长大。</span><br />
+				<span class="comments">我们有“起跑天堂”，从那里一齐携手迈向大山；</span><br />
+				<span class="comments">我们有“家的味道”，在那里，才渐渐了解什么是团结；</span><br />
+				<span class="comments">我以前想过，高三对我们到底意味着什么？</span><br />
+				<span class="comments">堆叠如山的试卷、做不完的习题，</span><br />
+				<span class="comments">还是夜晚瞌睡连连却又不得不提起笔来的辛酸，</span><br />
+				<span class="comments">而当这一切蓦然落幕的时候，</span><br />
+				<span class="comments">我才发现，这三年，我们走的辛苦而快乐，过的充实而美丽，</span><br />
+				<span class="comments">我们流过眼泪，却伴着欢笑，我们踏着荆棘，却嗅得万里花香，</span><br />
+				<span class="comments">三年，我们每个人，都长大了许多许多。</span><br />
+				<span class="comments">谢谢所有爱我们的人，我们会珍惜所有的感动，</span><br />
+				<span class="comments">把每一份期望都握在手里。</span><br />
+				<span class="comments">我们永远是10届高三（8）班的孩子，我们会一向微笑着前行……</span><br />
+			</div>
+			<div id="loveHeart">
+				<canvas id="garden"></canvas>
+				<div id="words">
+					<div id="messages">
+						亲爱的同学们，我们已经毕业
+						<div id="elapseClock"></div>
+					</div>
+					<div id="loveu">
+						我想你们啦<br />
+						<div class="signature">- Zgp</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function Vector(x, y) { // 矢量
+			this.x = x;
+			this.y = y;
+		};
+
+		Vector.prototype = {
+			rotate: function (theta) {
+				var x = this.x;
+				var y = this.y;
+				this.x = Math.cos(theta) * x - Math.sin(theta) * y;
+				this.y = Math.sin(theta) * x + Math.cos(theta) * y;
+				return this;
+			},
+			mult: function (f) {
+				this.x *= f;
+				this.y *= f;
+				return this;
+			},
+			clone: function () {
+				return new Vector(this.x, this.y);
+			}
+		};
+
+		function Petal(stretchA, stretchB, startAngle, angle, growFactor, bloom) { // 花瓣
+			this.stretchA = stretchA;
+			this.stretchB = stretchB;
+			this.startAngle = startAngle;
+			this.angle = angle;
+			this.bloom = bloom;
+			this.growFactor = growFactor;
+			this.r = 1;
+			this.isfinished = false;
+		}
+
+		Petal.prototype = {
+			draw: function () {
+				var ctx = this.bloom.garden.ctx;
+				var v1, v2, v3, v4;
+				v1 = new Vector(0, this.r).rotate(Garden.degrad(this.startAngle));
+				v2 = v1.clone().rotate(Garden.degrad(this.angle));
+				v3 = v1.clone().mult(this.stretchA);
+				v4 = v2.clone().mult(this.stretchB);
+				ctx.strokeStyle = this.bloom.c; // ?
+				ctx.beginPath();
+				ctx.moveTo(v1.x, v1.y);
+				ctx.bezierCurveTo(v3.x, v3.y, v4.x, v4.y, v2.x, v2.y);
+				ctx.stroke();
+			},
+			render: function () {
+				if (this.r <= this.bloom.r) {
+					this.r += this.growFactor;
+					this.draw();
+				} else {
+					this.isfinished = true;
+				}
+			}
+		}
+
+		function Bloom(p, r, c, pc, garden) { // 花
+			this.p = p;
+			this.r = r;
+			this.c = c;
+			this.pc = pc;
+			this.petals = [];
+			this.garden = garden;
+			this.init();
+			this.garden.addBloom(this);
+		};
+
+		Bloom.prototype = {
+			draw: function () {
+				var p, isfinished = true;
+				this.garden.ctx.save();
+				this.garden.ctx.translate(this.p.x, this.p.y);
+				for (var i = 0; i < this.petals.length; i++) {
+					p = this.petals[i];
+					p.render();
+					isfinished *= p.isfinished;
+				}
+				this.garden.ctx.restore();
+				if (isfinished == true) {
+					this.garden.removeBloom(this);
+				}
+			},
+			init: function () {
+				var angle = 360 / this.pc;
+				var startAngle = Garden.randomInt(0, 90);
+				for (var i = 0; i < this.pc; i++) {
+					this.petals.push(new Petal(Garden.random(Garden.options.petalStretch.min, Garden.options.petalStretch.max),
+						Garden.random(Garden.options.petalStretch.min, Garden.options.petalStretch.max), startAngle + i * angle,
+						angle, Garden.random(Garden.options.growFactor.min, Garden.options.growFactor.max), this));
+				}
+			}
+		}
+
+		function Garden(ctx, element) {
+			this.blooms = [];
+			this.element = element;
+			this.ctx = ctx;
+		}
+
+		Garden.prototype = {
+			render: function () {
+				for (let i = 0; i < this.blooms.length; i++) {
+					this.blooms[i].draw();
+				}
+			},
+			addBloom: function (b) {
+				this.blooms.push(b);
+			},
+			removeBloom: function (b) {
+				let bloom;
+				for (let i = 0; i < this.blooms.length; i++) {
+					bloom = this.blooms[i];
+					if (bloom === b) {
+						this.blooms.splice(i, 1);
+						return this;
+					}
+				}
+			},
+			createRandomBloom: function (x, y) { // 创建花朵
+				this.createBloom(x, y, Garden.randomInt(Garden.options.bloomRadius.min, Garden.options.bloomRadius.max), Garden.randomrgba(
+					Garden.options.color.rmin, Garden.options.color.rmax, Garden.options.color.gmin, Garden.options.color.gmax,
+					Garden.options.color.bmin, Garden.options.color.bmax, Garden.options.color.opacity), Garden.randomInt(Garden.options
+					.petalCount.min, Garden.options.petalCount.max));
+			},
+			createBloom: function (x, y, r, c, pc) { // x,y,半径，颜色，花盘数量
+				new Bloom(new Vector(x, y), r, c, pc, this);
+			}
+		}
+
+		Garden.options = {
+			petalCount: { // 花盘数量
+				min: 8,
+				max: 15
+			},
+			petalStretch: { // 拉伸
+				min: 0.1,
+				max: 3
+			},
+			growFactor: { // 因素
+				min: 0.1,
+				max: 1
+			},
+			bloomRadius: {
+				min: 8,
+				max: 10
+			},
+			growSpeed: 1000 / 60, // 花的生长速度;
+			color: {
+				rmin: 128,
+				rmax: 255,
+				gmin: 0,
+				gmax: 128,
+				bmin: 0,
+				bmax: 128,
+				opacity: 0.1
+			}
+		};
+		Garden.random = function (min, max) {
+			return Math.random() * (max - min) + min;
+		};
+		Garden.randomInt = function (min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		};
+		Garden.circle = 2 * Math.PI;
+		Garden.degrad = function (angle) {
+			return Garden.circle / 360 * angle;
+		};
+		Garden.raddeg = function (angle) {
+			return angle / Garden.circle * 360;
+		};
+		Garden.rgba = function (r, g, b, a) {
+			return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+		};
+		Garden.randomrgba = function (rmin, rmax, gmin, gmax, bmin, bmax, a) {
+			var r = Math.round(Garden.random(rmin, rmax));
+			var g = Math.round(Garden.random(gmin, gmax));
+			var b = Math.round(Garden.random(bmin, bmax));
+			return Garden.rgba(r, g, b, a);
+		}
+		let $window = $(window),
+			garden;
+
+		$(function () {
+			// setup garden
+			let $loveHeart = $("#loveHeart"),
+				offsetX = $loveHeart.width() / 2,
+				offsetY = $loveHeart.height() / 2 - 55,
+				$garden = $("#garden"),
+				gardenCanvas = $garden[0],
+				gardenCtx = gardenCanvas.getContext("2d");
+			garden = new Garden(gardenCtx, gardenCanvas);
+			gardenCanvas.width = $("#loveHeart").width();
+			gardenCanvas.height = $("#loveHeart").height();
+			gardenCtx.globalCompositeOperation = "lighter"; // 显示源图像 + 目标图像
+
+			$("#content").css("width", $loveHeart.width() + $("#code").width());
+			$("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
+			$("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10)); // 垂直居中
+			$("#content").css("margin-left", Math.max(($window.width() - $("#content").width()) / 2, 10)); // 水平居中
+
+			// renderLoop
+			setInterval(function () {
+				garden.render();
+			}, Garden.options.growSpeed);
+		});
+
+		// 返回爱心点的坐标
+		function getHeartPoint(angle) {
+			var t = angle / Math.PI;
+			var x = 19.5 * (16 * Math.pow(Math.sin(t), 3));
+			var y = -20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+			return new Array(offsetX + x, offsetY + y);
+		}
+
+		// 爱心效果
+		function startHeartAnimation() {
+			var angle = 10; // 度数
+			var heart = new Array();
+			var animationTimer = setInterval(function () {
+				var bloom = getHeartPoint(angle);
+				var draw = true;
+				for (var i = 0; i < heart.length; i++) { // 防止首位的颜色过度叠加(具体的还没弄懂)
+					var p = heart[i];
+					var distance = Math.sqrt(Math.pow(p[0] - bloom[0], 2) + Math.pow(p[1] - bloom[1], 2));
+					if (distance < Garden.options.bloomRadius.max * 1.3) {
+						draw = false;
+						break;
+					}
+				}
+				if (draw) {
+					heart.push(bloom);
+					garden.createRandomBloom(bloom[0], bloom[1]); // 根据具体位置创建随机花朵;
+				}
+				if (angle >= 30) {
+					clearInterval(animationTimer);
+					showMessages();
+				} else {
+					angle += 0.2;
+				}
+			}, 75);
+		}
+
+		// 模拟出打字效果
+		(function ($) {
+			$.fn.typewriter = function () {
+				this.each(function () {
+					let $ele = $(this),
+						str = $ele.html(),
+						progress = 0;
+					$ele.html('');
+					let timer = setInterval(function () {
+						let current = str.substr(progress, 1); // 每次截取一个字符
+						if (current === '<') { // 如果是<则找到对应的>，并增加相应的progress的值;
+							progress = str.indexOf('>', progress) + 1; // 从<>的下一个开始
+						} else {
+							progress++;
+						}
+						// progress & 1 与运算 奇数 & 1 = 1,偶数 & 1 = 0；
+						$ele.html(str.substring(0, progress) + (progress & 1 ? '_' : '')); // 模拟出打字'_'闪烁效果
+					}, 75);
+				});
+				return this;
+			};
+		})(jQuery);
+
+		
+		function timeElapse(date) {
+            var current = Date();
+            var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
+            var days = Math.floor(seconds / (3600 * 24));
+            seconds = seconds % (3600 * 24);
+            var hours = Math.floor(seconds / 3600);
+            if (hours < 10) {
+                hours = "0" + hours;
+            }
+            seconds = seconds % 3600;
+            var minutes = Math.floor(seconds / 60);
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            seconds = seconds % 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var result = "<span class=\"digit\">" + days + "</span> 天 <span class=\"digit\">" + hours +
+                "</span> 小时 <span class=\"digit\">" + minutes + "</span> 分钟 <span class=\"digit\">" + seconds +
+                "</span> 秒";
+            document.getElementById("elapseClock").innerHTML = result;
+        }
+
+		function showMessages() {
+			adjustWordsPosition();
+			$('#messages').fadeIn(5000, function () {
+				showLoveU();
+			});
+		}
+
+		function adjustWordsPosition() {
+			$('#words').css("position", "absolute");
+			$('#words').css("top", $("#garden").position().top + 195);
+			$('#words').css("left", $("#garden").position().left + 70);
+		}
+
+		function adjustCodePosition() {
+			$('#code').css("margin-top", ($('#garden').height() - $("#code").height()) / 2);
+		}
+
+		function showLoveU() {
+			$('#loveu').fadeIn(3000);
+		}
+		var offsetX = $("#loveHeart").width() / 2;
+		var offsetY = $("#loveHeart").height() / 2 - 55;
+		var together = new Date();
+		together.setFullYear(2014, 06, 09); 
+		together.setHours(11);
+		together.setMinutes(0);
+		together.setSeconds(0);
+		together.setMilliseconds(0);
+		if (!document.createElement('canvas').getContext) {
+			var msg = document.createElement("div");
+			msg.id = "errorMsg";
+			msg.innerHTML = "Your browser doesn't support HTML5!";
+			document.body.appendChild(msg);
+			$("#code").css("display", "none");
+		} else {
+			setTimeout(function () {
+				startHeartAnimation();
+			}, 5000);
+			timeElapse(together);
+			setInterval(function () {
+            timeElapse(together);
+        }, 500);
+			adjustCodePosition();
+			$("#code").typewriter(); // 打字效果
+		}
+	</script>
+</body>
+
+</html>
