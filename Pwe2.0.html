@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Personal website exercises</title>
+    <style>
+        body {
+            background-image: url(http://www.oudeqi.com/assets/images/6.cebf25e7.jpg);
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .navigation {
+            width: 100%;
+            height: 50px;
+            background-color: #222;
+            border: 1px solid black;
+            position: relative；
+        }
+
+        .nva_01 {
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            line-height: 50px;
+            opacity: 0.5;
+            margin-left: 380px;
+            float: left;
+            position: relative；
+        }
+
+        .nva_02 {
+            font-size: 14px;
+            line-height: 50px;
+            float: right;
+            list-style-type: none;
+            margin-right: 425px;
+            position: relative；
+        }
+
+        .nva_03 {
+            color: white;
+            cursor: pointer;
+            float: left;
+            margin-left: 25px;
+            line-height: 50px;
+            opacity: 0.5;
+        }
+
+        .head_01 {
+            height: 320px;
+            color: white;
+        }
+
+        .head_02 {
+            padding-top: 100px;
+            margin-left: 380px;
+            font-family: "宋体";
+            font-size: 24px;
+        }
+
+        a:link {
+            color: white;
+        }
+
+        a:visited {
+            color: white;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+        a:active {
+            color: white;
+        }
+
+        .body_01 {
+            background-color: white;
+            height: 1230px;
+            position: relative；
+        }
+
+        .body_02 {
+            cursor: pointer;
+            float: left;
+            font-size: 14px;
+            color: rgb(32, 106, 175);
+            width: 250px;
+            height: 75px;
+            margin-left: 380px;
+            margin-top: 30px;
+            border: 1px solid rgb(204, 198, 198);
+            position: absolute;
+            border-radius: 4px;
+            line-height: 35px;
+            position: relative；
+        }
+
+        .body_10 {
+            border-radius: 4px;
+            width: 250px;
+            height: 37.5px;
+        }
+
+        #body_03 {
+            margin-left: 10px;
+            text-decoration: none;
+            color: rgb(32, 106, 175);
+            cursor: pointer;
+        }
+
+        #body_031 {
+            margin-left: 10px;
+            text-decoration: none;
+            color: rgb(32, 106, 175);
+            cursor: pointer;
+        }
+
+        .body_04 {
+            margin-left: 670px;
+            margin-top: 35px;
+            position: absolute;
+        }
+
+        .body_05 {
+            font-size: 22px;
+        }
+
+        .body_07 {
+            height: 183.797px;
+            width: 262.484px;
+            margin: 15px;
+            float: left;
+            cursor: pointer;
+            padding: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 2%;
+        }
+
+        .title_p {
+            font-size: 14px;
+            text-align: center;
+            color: rgb(78, 74, 74);
+        }
+
+        .body_08 {
+            margin-left: 0;
+        }
+
+        #footer {
+            height: 40px;
+            background-color: rgb(192, 192, 192);
+            line-height: 40px;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .footer_01 {
+            text-decoration: none;
+        }
+    </style>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+</head>
+
+<body>
+    <div>
+        <div class="navigation">
+            <span class="nva_01">Zguoping★首页</span>
+            <ul class="nva_02">
+                <li class="nva_03"><span>首页</span></li>
+                <li class="nva_03"><span>求职简历</span></li>
+                <li class="nva_03"><span>联系方式</span></li>
+            </ul>
+        </div>
+        <div class="head_01">
+            <div class="head_02">
+                <h1>我的个人案例展示！</h1><br />
+                <a href="#">我的个人相册！</a>
+            </div>
+        </div>
+        <div class="body_01">
+            <div class="body_02">
+                <div class="body_10"><a id="body_03" href="#jump_01">PC端项目</a></div>
+                <hr>
+                <div class="body_10"><a id="body_031" href="#jump_02">移动端项目</a></div>
+                </ul>
+            </div>
+            <div class="body_04">
+                <div class="body_05" id="jump_01">PC端项目</div>
+                <div>
+                    <div class="body_07 body_08">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=1"><img src="http://www.oudeqi.com/assets/images/oa-crm.e431d484.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">客户关系系统</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=2"><img src="http://www.oudeqi.com/assets/images/pc2.bd62cc69.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">仿百度注册</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=3"><img src="http://www.oudeqi.com/assets/images/pc3.da68b360.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">小说分销系统</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="body_07 body_08">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=4"><img src="http://www.oudeqi.com/assets/images/pc4.063e3ad7.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">微管理</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=5"><img src="http://www.oudeqi.com/assets/images/pc5.1cf288e3.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">ECharts图表</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=6"><img src="http://www.oudeqi.com/assets/images/pc6.39a677c4.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">官网练习</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="body_07 body_08">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=7"><img src="http://www.oudeqi.com/assets/images/pc7.8e83e6cd.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">图片裁剪预览</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=8"><img src="http://www.oudeqi.com/assets/images/pc8.9ff1fa04.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">css3-3d效果</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=9"><img src="http://www.oudeqi.com/assets/images/pc9.2400a8f3.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">练习输入框</p>
+                    </div>
+                </div>
+                <div class="body_05" id="jump_02">移动端项目</div>
+                <div>
+                    <div class="body_07 body_08">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=10"><img src="http://www.oudeqi.com/assets/images/phone-page-cover-4.8643f542.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">图片滑动组件练习</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=11"><img src="http://www.oudeqi.com/assets/images/vote-cover.a3f1133a.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">投票系统</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=12"><img src="http://www.oudeqi.com/assets/images/shopping-mall-cover.c317a89f.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">移动端商城</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="body_07 body_08">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=13"><img src="http://www.oudeqi.com/assets/images/phone-page-cover-1.5d4b591a.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">手机页面</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=14"><img src="http://www.oudeqi.com/assets/images/phone-page-cover-2.979d6ab9.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">手机页面</p>
+                    </div>
+                    <div class="body_07">
+                        <a href="http://www.oudeqi.com/project-detail.html?id=15"><img src="http://www.oudeqi.com/assets/images/phone-page-cover-3.15b57604.png"
+                                width="262.469" height="153.797"></a><br />
+                        <p class="title_p">手机页面</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <span id="footer_01">© 2015 <a style="color:black" href="#" class="footer_01">XXX</a>仿制练习用不作任何商业用途&nbsp;&nbsp;<a
+                    href="#" style="color:black" class="footer_01">123456789@qq.com</a></span>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $(".nva_01,.nva_03").mouseenter(function () {
+                $(this).css("opacity", "1");
+            });
+            $(".nva_01,.nva_03").mouseleave(function () {
+                $(this).css("opacity", "0.5");
+            });
+            $(".body_10").on({
+                mouseenter: function () {
+                    $(this).css("backgroundColor", "rgb(190, 190, 190)");
+                },
+                mouseleave: function () {
+                    $(this).css("backgroundColor", "");
+                }
+            })
+
+            $(".body_07").mouseenter(function () {
+                $(this).css("border", "1px solid rgb(0, 132, 255)");
+            });
+            $(".body_07").mouseleave(function () {
+                $(this).css("border", "1px solid rgba(0, 0, 0, 0.3)")
+            });
+        })
+    </script>
+</body>
+
+</html>
